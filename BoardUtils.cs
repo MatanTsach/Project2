@@ -1,17 +1,18 @@
-public class BoardUtils {
-    public static bool checkWin(string[][] matrix, String i_Sign)
+public class BoardUtils
+{
+    public static bool checkWin(string[,] matrix, String i_Sign)
     {
         return evaluateBoardHorizonal(matrix, i_Sign) || evaluateBoardHorizonal(matrix, i_Sign) || evaluateBoardDiagonal(matrix, i_Sign);
     }
 
-    public static bool isBoardFull(string[][] matrix)
+    public static bool isBoardFull(string[,] matrix)
     {
         bool isFull = true;
-        for(int row = 0; row < matrix[0].Length; row++)
+        for (int row = 0; row < matrix.Length; row++)
         {
-            for(int col = 0; col < matrix[0].Length; col++)
+            for (int col = 0; col < matrix.Length; col++)
             {
-                if(!string.IsNullOrWhiteSpace(matrix[row][col]))
+                if (!string.IsNullOrWhiteSpace(matrix[row, col]))
                 {
                     isFull = false;
                 }
@@ -20,16 +21,16 @@ public class BoardUtils {
         return isFull;
     }
 
-    private static bool evaluateBoardHorizonal(string[][] matrix, String i_Sign)
+    private static bool evaluateBoardHorizonal(string[,] matrix, String i_Sign)
     {
         int maxCount = 0;
-        int matrixSize = matrix[0].Length;
-        for(int row = 0; row < matrixSize; row++)
+        int matrixSize = matrix.Length;
+        for (int row = 0; row < matrixSize; row++)
         {
             int count = 0;
-            for(int col = 0; col < matrixSize; col++)
+            for (int col = 0; col < matrixSize; col++)
             {
-                if (matrix[row][col].Trim() == i_Sign)
+                if (matrix[row, col].Trim() == i_Sign)
                 {
                     count++;
                 }
@@ -43,16 +44,16 @@ public class BoardUtils {
         return maxCount == matrixSize;
     }
 
-    private static bool evaluateBoardVertical(string[][] matrix, String i_Sign)
+    private static bool evaluateBoardVertical(string[,] matrix, String i_Sign)
     {
         int maxCount = 0;
-        int matrixSize = matrix[0].Length;
-        for(int col = 0; col < matrixSize; col++)
+        int matrixSize = matrix.Length;
+        for (int col = 0; col < matrixSize; col++)
         {
             int count = 0;
-            for(int row = 0; row < matrixSize; row++)
+            for (int row = 0; row < matrixSize; row++)
             {
-                if (matrix[row][col].Trim() == i_Sign)
+                if (matrix[row, col].Trim() == i_Sign)
                 {
                     count++;
                 }
@@ -66,15 +67,15 @@ public class BoardUtils {
         return maxCount == matrixSize;
     }
 
-    private static bool evaluateBoardDiagonal(string[][] matrix, String i_Sign)
+    private static bool evaluateBoardDiagonal(string[,] matrix, String i_Sign)
     {
-        int matrixSize = matrix[0].Length;
+        int matrixSize = matrix.Length;
         int mainDiagonal = 0;
         int oppositeDiagonal = 0;
-        for(int i = 0; i < matrixSize; i++)
+        for (int i = 0; i < matrixSize; i++)
         {
-            mainDiagonal += matrix[i][i].Trim() == i_Sign ? 1 : 0;
-            oppositeDiagonal += matrix[matrixSize - 1 - i][matrixSize - 1 - i].Trim() == i_Sign ? 1 : 0;
+            mainDiagonal += matrix[i, i].Trim() == i_Sign ? 1 : 0;
+            oppositeDiagonal += matrix[matrixSize - 1 - i, matrixSize - 1 - i].Trim() == i_Sign ? 1 : 0;
         }
         return mainDiagonal == matrixSize || oppositeDiagonal == matrixSize;
     }
