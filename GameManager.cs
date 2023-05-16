@@ -12,6 +12,10 @@ class GameManager {
     }
 
     public void startGame() {
-        
+        GameRound round;
+        while(true) {
+            round = new GameRound(r_boardSize, r_isMultiplayer);
+            round.playRound();
+        }
     }
 }
