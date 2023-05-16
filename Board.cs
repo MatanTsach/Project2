@@ -1,4 +1,4 @@
-class Board
+public class Board
 {
     private string[,] matrix;
     private int m_matrixSize;
@@ -30,14 +30,14 @@ class Board
             seperatorLine += "=";
         }
         Console.Write("  ");
-        for (int i = 0 ; i < m_matrixSize ; i++)
+        for (int i = 0; i < m_matrixSize; i++)
         {
             Console.Write( i +1 + "   ");
         }
         Console.WriteLine("");
-        for (int row = 0; row < m_matrixSize ; row++)
+        for (int row = 0; row < m_matrixSize; row++)
             {
-                for (int column = 0; column < m_matrixSize ; column++)
+                for (int column = 0; column < m_matrixSize; column++)
                 {
                     if (column == 0)
                         Console.Write(row+1 + "|" + matrix[row,column]);
@@ -75,4 +75,8 @@ class Board
                 }
             }
     }  
+    public bool isCellAvailable(int i_Row, int i_Col)
+    {
+        return string.IsNullOrWhiteSpace(matrix[i_Row, i_Col]);
+    }
 }
