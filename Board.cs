@@ -2,8 +2,14 @@ class Board
 {
     private string[,] matrix;
     private int m_matrixSize;
-
-
+    public string[,] getBoard()
+    {
+        return matrix;
+    }
+    public int getBoardSize()
+    {
+        return m_matrixSize;
+    }
     public Board(int size)
     {
         m_matrixSize = size;
@@ -46,11 +52,27 @@ class Board
                 Console.WriteLine(seperatorLine);
             }
     }
-
-    public string[,] getBoard()
+    public bool updateBoard(int row, int column, string value)
     {
-        return matrix;
-    }
-    
-    
+        bool changed = false;
+        if(row <= m_matrixSize && row >= 0 && column <= m_matrixSize && column >= 0)
+        {
+            if (matrix[row,column] == "   ")
+            {
+                matrix[row,column] = " " + value + " " ;
+                changed = true;
+            }
+        }
+        return changed;
+    }  
+    public void resetBoard()
+    {
+        for (int row = 0; row < m_matrixSize; row++)
+            {
+                for (int column = 0; column < m_matrixSize; column++)
+                {
+                    matrix[row, column] = "   "; 
+                }
+            }
+    }  
 }
