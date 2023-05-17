@@ -1,8 +1,8 @@
 class GameManager {
     private readonly int r_boardSize;
     private readonly bool r_isMultiplayer;
-    private int m_player1Score;
-    private int m_player2Score;
+    private static int m_player1Score;
+    private static int m_player2Score;
     private GameEngine m_gameEngine;
     private Board m_gameBoard;
     public GameManager(int i_boardSize, bool i_isMultiplayer)
@@ -12,7 +12,22 @@ class GameManager {
         m_gameBoard = new Board(i_boardSize);
         m_gameEngine = r_isMultiplayer ? new MultiPlayerEngine(m_gameBoard) : new SinglePlayerEngine(m_gameBoard);
     }
-
+    public static int getPlayerScore(int id)
+    {
+        int playerScore;
+        if(id == 1)
+            playerScore = m_player1Score;
+        else
+            playerScore = m_player2Score;
+        return playerScore;    
+    }
+    public static void increasePlayerScore(int id)
+    {
+        if(id == 1)
+            m_player1Score++;
+        else
+            m_player2Score++;
+    }
     public void startGame()
     {
         while(true)
@@ -28,7 +43,6 @@ class GameManager {
             m_gameEngine.resetEngine();
         }
     }
-
     private void playRound()
     {
         while(true)

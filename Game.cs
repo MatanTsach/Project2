@@ -9,8 +9,12 @@ class Game
         //gameManager.startGame();
         Board b = new Board(boardSize);
         b.refreshMatrix();
+        b.updateBoard(3,3,"X");
+        b.refreshMatrix();
+        b.resetBoard();
+        b.refreshMatrix();
+        b.displayScoreTable();
     }
-
     private static int getBoardSize() {
         Console.WriteLine("Welcome to Matan and Dolev's Tic Tac Toe game");
         Console.WriteLine("Please enter a board size:");

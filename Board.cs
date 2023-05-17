@@ -52,18 +52,15 @@ public class Board
                 Console.WriteLine(seperatorLine);
             }
     }
-    public bool updateBoard(int row, int column, string value)
+    public void updateBoard(int row, int column, string value)
     {
-        bool changed = false;
         if(row <= m_matrixSize && row >= 0 && column <= m_matrixSize && column >= 0)
         {
             if (matrix[row,column] == "   ")
             {
                 matrix[row,column] = " " + value + " " ;
-                changed = true;
             }
         }
-        return changed;
     }  
     public void resetBoard()
     {
@@ -78,5 +75,14 @@ public class Board
     public bool isCellAvailable(int i_Row, int i_Col)
     {
         return string.IsNullOrWhiteSpace(matrix[i_Row, i_Col]);
+    }
+    public void displayScoreTable()
+    {
+        int player1Score = GameManager.getPlayerScore(1);
+        int player2Score = GameManager.getPlayerScore(2);
+        Console.WriteLine("Score Table");
+        Console.WriteLine("-----------------");
+        Console.WriteLine($"Player 1: {player1Score} points");
+        Console.WriteLine($"Player 2: {player2Score} points");
     }
 }

@@ -41,4 +41,31 @@ public class ConsoleUtils
         }
         return (x, y);
     }
+    public static bool askAnotherRound()
+    {
+        bool anotherRound;
+        string anotherRoundInput;
+        while(true)
+        {
+            Console.WriteLine("Do you want anthoer round?");
+            Console.WriteLine("Press Y if you do or N if not");
+            anotherRoundInput = Console.ReadLine();
+            if(anotherRoundInput == "Y")
+                {
+                    anotherRound = true;
+                    break;
+                }
+            else
+                {
+                    if(anotherRoundInput == "N")
+                    {
+                        anotherRound = false;
+                        break;
+                    }
+                    else
+                        Console.WriteLine("Please Enter Y or N");
+                }
+        }
+        return anotherRound;
+    }
 }
