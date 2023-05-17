@@ -13,7 +13,7 @@ public class BoardUtils
         {
             for (int col = 0; col < matrixSize; col++)
             {
-                if (!string.IsNullOrWhiteSpace(matrix[row, col]))
+                if (string.IsNullOrWhiteSpace(matrix[row, col]))
                 {
                     isFull = false;
                 }
@@ -75,8 +75,8 @@ public class BoardUtils
         int oppositeDiagonal = 0;
         for (int i = 0; i < matrixSize; i++)
         {
-            mainDiagonal += matrix[i, i].Trim() == i_Sign ? 1 : 0;
-            oppositeDiagonal += matrix[matrixSize - 1 - i, matrixSize - 1 - i].Trim() == i_Sign ? 1 : 0;
+            mainDiagonal += (matrix[i, i].Trim() == i_Sign ? 1 : 0);
+            oppositeDiagonal += (matrix[i, matrixSize - 1 - i].Trim() == i_Sign ? 1 : 0);
         }
         return mainDiagonal == matrixSize || oppositeDiagonal == matrixSize;
     }

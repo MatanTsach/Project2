@@ -18,8 +18,8 @@ public class SinglePlayerEngine : GameEngine
             Random random = new Random();
             while (true)
             {
-                row = random.Next(1, m_gameBoard.getBoardSize());
-                col = random.Next(1, m_gameBoard.getBoardSize());
+                row = random.Next(0, m_gameBoard.getBoardSize());
+                col = random.Next(0, m_gameBoard.getBoardSize());
 
                 if (m_gameBoard.isCellAvailable(row, col))
                 {

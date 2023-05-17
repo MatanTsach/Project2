@@ -7,7 +7,7 @@ public class MultiPlayerEngine : GameEngine
 
     public override void playTurn()
     {
-        string prefix = $"[Player{m_playerIdTurn}]";
+        string prefix = $"[Player{m_playerIdTurn}] ";
         string sign = m_gameMarks[m_playerIdTurn - 1];
         (int row, int col) = UI.requestUserCellInput(m_gameBoard, prefix, sign, out m_gameState);
         if(!(m_gameState == GameState.GAME_END))

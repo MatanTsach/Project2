@@ -18,15 +18,16 @@ public class UI
         switch(i_gameState)
         {
             case GameState.GAME_PLAYER1_LOSS:
-                Console.WriteLine("Player2 has won the game!.");
+                Console.WriteLine("Player2 has won the game!");
                 break;
             case GameState.GAME_PLAYER2_LOSS:
-                Console.WriteLine("Player1 has won the game!.");
+                Console.WriteLine("Player1 has won the game!");
                 break;
             case GameState.GAME_TIE:
-                Console.WriteLine("The board is full, therefore the round ended in a tie!.");
+                Console.WriteLine("The board is full, therefore the round ended in a tie!");
                 break;
         }
+        Console.WriteLine();
     }
 
     public static int getBoardSize()
@@ -39,12 +40,11 @@ public class UI
             {
                 if (sizeInputNum >= 3 && sizeInputNum <= 9)
                 {
-                    break;
+                    return sizeInputNum;
                 }
-                Console.WriteLine("INVALID INPUT, PLEASE ENTER AGAIN");
             }
+            Console.WriteLine("Invalid input, please try again.");
         }
-        return sizeInputNum;
     }
 
     public static bool isMultiplayerOrSingle()
