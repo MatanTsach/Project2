@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
-public class ConsoleUtils
+
+public class UI
 {
 
     public static void sendWelcomeMessage()

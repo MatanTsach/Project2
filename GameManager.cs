@@ -18,9 +18,9 @@ class GameManager {
         while(true)
         {
             playRound();
-            ConsoleUtils.DisplayEndOfRoundMessage(m_gameEngine.gameState);
+            UI.DisplayEndOfRoundMessage(m_gameEngine.gameState);
             m_gameBoard.displayScoreTable(m_player1Score, m_player2Score);
-            bool continueGame = ConsoleUtils.askAnotherRound();
+            bool continueGame = UI.askAnotherRound();
             if(!continueGame)
             {
                 break;
@@ -28,7 +28,7 @@ class GameManager {
             m_gameBoard.resetBoard();
             m_gameEngine.resetEngine();
         }
-        ConsoleUtils.sendEndMessage();
+        UI.sendEndMessage();
     }
     private void playRound()
     {
