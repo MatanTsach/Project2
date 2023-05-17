@@ -3,9 +3,9 @@ class Game
 {
     public static void Main()
     {
-        ConsoleUtils.sendWelcomeMessage();
-        int boardSize = ConsoleUtils.getBoardSize();
-        bool gameMode = ConsoleUtils.isMultiplayerOrSingle();
+        UI.sendWelcomeMessage();
+        int boardSize = UI.getBoardSize();
+        bool gameMode = UI.isMultiplayerOrSingle();
         GameManager gameManager = new GameManager(boardSize, gameMode);
         gameManager.startGame();
     }
