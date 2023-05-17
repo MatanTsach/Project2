@@ -14,11 +14,7 @@ public class MultiPlayerEngine : GameEngine
         if(!(m_gameState == GameState.GAME_END))
         {
             m_gameBoard.updateBoard(row, col, sign);
-            if(BoardUtils.checkWin(m_gameBoard.getBoard(), sign))
-            {
-                m_gameState = m_playerIdTurn == 1 ? GameState.GAME_PLAYER1_WIN : GameState.GAME_PLAYER2_WIN;
-            }
+            evaluateGameState();
         }
-        m_playerIdTurn = m_playerIdTurn == 1 ? 2 : 1;
     }
 }

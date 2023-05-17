@@ -12,28 +12,14 @@ class GameManager {
         m_gameBoard = new Board(i_boardSize);
         m_gameEngine = r_isMultiplayer ? new MultiPlayerEngine(m_gameBoard) : new SinglePlayerEngine(m_gameBoard);
     }
-    public static int getPlayerScore(int id)
-    {
-        int playerScore;
-        if(id == 1)
-            playerScore = m_player1Score;
-        else
-            playerScore = m_player2Score;
-        return playerScore;    
-    }
-    public static void increasePlayerScore(int id)
-    {
-        if(id == 1)
-            m_player1Score++;
-        else
-            m_player2Score++;
-    }
+
     public void startGame()
     {
         while(true)
         {
             playRound();
-            m_gameBoard.displayScoreTable();
+            ConsoleUtils.DisplayEndOfRoundMessage(m_gameEngine.gameState);
+            m_gameBoard.displayScoreTable(m_player1Score, m_player2Score);
             bool continueGame = ConsoleUtils.askAnotherRound();
             if(!continueGame)
             {
@@ -42,25 +28,34 @@ class GameManager {
             m_gameBoard.resetBoard();
             m_gameEngine.resetEngine();
         }
+        ConsoleUtils.sendEndMessage();
     }
     private void playRound()
     {
-        while(true)
+        bool continueRound = true;
+        while(continueRound)
         {
             m_gameEngine.playTurn();
-            if(m_gameEngine.gameState == GameState.GAME_END)
+            switch(m_gameEngine.gameState)
             {
-                break;
+                case GameState.GAME_END:
+                    continueRound = false;
+                    break;
+                case GameState.GAME_PLAYER1_LOSS:
+                    continueRound = false;
+                    m_player2Score++;
+                    break;
+                case GameState.GAME_PLAYER2_LOSS:
+                    continueRound = false;
+                    m_player1Score++;
+                    break;
+                case GameState.GAME_TIE:
+                    continueRound = false;
+                    break;
+                case GameState.GAME_CONTINUE:
+                    break;
             }
-            else if(m_gameEngine.gameState == GameState.GAME_PLAYER1_WIN)
-            {
-                m_player1Score++;
-                break;
-            } else if(m_gameEngine.gameState == GameState.GAME_PLAYER2_WIN)
-            {
-                m_player2Score++;
-                break;
-            }
+            m_gameEngine.changePlayerTurn();
         }
     }
 }

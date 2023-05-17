@@ -1,16 +1,17 @@
 public class BoardUtils
 {
-    public static bool checkWin(string[,] matrix, String i_Sign)
+    public static bool checkLoss(string[,] matrix, String i_Sign)
     {
-        return evaluateBoardHorizonal(matrix, i_Sign) || evaluateBoardHorizonal(matrix, i_Sign) || evaluateBoardDiagonal(matrix, i_Sign);
+        return evaluateBoardHorizonal(matrix, i_Sign) || evaluateBoardVertical(matrix, i_Sign) || evaluateBoardDiagonal(matrix, i_Sign);
     }
 
     public static bool isBoardFull(string[,] matrix)
     {
         bool isFull = true;
-        for (int row = 0; row < matrix.Length; row++)
+        int matrixSize = matrix.GetLength(0);
+        for (int row = 0; row < matrixSize; row++)
         {
-            for (int col = 0; col < matrix.Length; col++)
+            for (int col = 0; col < matrixSize; col++)
             {
                 if (!string.IsNullOrWhiteSpace(matrix[row, col]))
                 {
@@ -24,7 +25,7 @@ public class BoardUtils
     private static bool evaluateBoardHorizonal(string[,] matrix, String i_Sign)
     {
         int maxCount = 0;
-        int matrixSize = matrix.Length;
+        int matrixSize = matrix.GetLength(0);
         for (int row = 0; row < matrixSize; row++)
         {
             int count = 0;
@@ -47,7 +48,7 @@ public class BoardUtils
     private static bool evaluateBoardVertical(string[,] matrix, String i_Sign)
     {
         int maxCount = 0;
-        int matrixSize = matrix.Length;
+        int matrixSize = matrix.GetLength(0);
         for (int col = 0; col < matrixSize; col++)
         {
             int count = 0;
@@ -69,7 +70,7 @@ public class BoardUtils
 
     private static bool evaluateBoardDiagonal(string[,] matrix, String i_Sign)
     {
-        int matrixSize = matrix.Length;
+        int matrixSize = matrix.GetLength(0);
         int mainDiagonal = 0;
         int oppositeDiagonal = 0;
         for (int i = 0; i < matrixSize; i++)

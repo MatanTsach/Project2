@@ -23,4 +23,21 @@ public abstract class GameEngine
         m_playerIdTurn = 1;
         m_gameState = GameState.GAME_CONTINUE;
     }
+
+    public void changePlayerTurn()
+    {
+        m_playerIdTurn = m_playerIdTurn == 1 ? 2 : 1;
+    }
+
+    public void evaluateGameState()
+    {
+        if(BoardUtils.checkLoss(m_gameBoard.getBoard(), m_gameMarks[m_playerIdTurn-1]))
+        {
+            m_gameState = m_playerIdTurn == 1 ? GameState.GAME_PLAYER1_LOSS : GameState.GAME_PLAYER2_LOSS;
+        }
+        else if(BoardUtils.isBoardFull(m_gameBoard.getBoard()))
+        {
+            m_gameState = GameState.GAME_TIE;
+        }
+    }
 }
