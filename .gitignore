@@ -1,0 +1,9 @@
+# Ignore .vscode folder
+.vscode/
+
+# Ignore bin and obj folders
+bin/
+obj/
+
+# Ignore Project2.csproj file
+Project2.csproj
