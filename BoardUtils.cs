@@ -20,7 +20,7 @@ public class BoardUtils
         }
         return isFull;
     }
-
+    // todo change to check win for both.. i was lazy.
     private static bool evaluateBoardHorizonal(string[,] matrix, String i_Sign)
     {
         int maxCount = 0;
