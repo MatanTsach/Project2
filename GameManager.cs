@@ -1,10 +1,11 @@
 class GameManager {
     private readonly int r_boardSize;
     private readonly bool r_isMultiplayer;
-    private static int m_player1Score;
-    private static int m_player2Score;
-    private GameEngine m_gameEngine;
-    private Board m_gameBoard;
+    private readonly GameEngine m_gameEngine;
+    private readonly Board m_gameBoard;
+    private int m_player1Score;
+    private int m_player2Score;
+
     public GameManager(int i_boardSize, bool i_isMultiplayer)
     {
         r_boardSize = i_boardSize;
