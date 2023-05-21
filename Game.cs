@@ -3,11 +3,11 @@ class Game
 {
     public static void Main()
     {
-        UI.sendWelcomeMessage();
-        int boardSize = UI.getBoardSize();
-        bool gameMode = UI.isMultiplayerOrSingle();
+        UI.DisplayWelcomeMessage();
+        int boardSize = UI.AskBoardSize();
+        bool gameMode = UI.AskMultiplayerOrSingle();
         GameManager gameManager = new GameManager(boardSize, gameMode);
-        gameManager.startGame();
+        gameManager.StartGame();
     }
     
 }

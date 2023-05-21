@@ -1,4 +1,4 @@
-public enum GameState {
+public enum eGameState {
     GAME_END,
     GAME_CONTINUE,
     GAME_TIE,
