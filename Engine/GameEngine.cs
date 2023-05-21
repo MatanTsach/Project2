@@ -1,43 +1,43 @@
 public abstract class GameEngine
 {
-    protected GameState m_gameState;
-    protected Board m_gameBoard;
-    protected readonly string[] m_gameMarks = { "X", "O" };
+    protected eGameState m_GameState;
+    protected Board m_GameBoard;
+    protected readonly string[] r_GameMarks = { "X", "O" };
+    protected int m_PlayerIdTurn = 1;
 
-    protected int m_playerIdTurn = 1;
     public GameEngine(Board i_gameBoard)
     {
-        m_gameBoard = i_gameBoard;
-        m_gameState = GameState.GAME_CONTINUE;
+        m_GameBoard = i_gameBoard;
+        m_GameState = eGameState.GAME_CONTINUE;
     }
 
-    public abstract void playTurn();
+    public abstract void PlayTurn();
 
-    public GameState gameState
+    public eGameState State
     {
-        get { return m_gameState; }
+        get { return m_GameState; }
     }
 
-    public void resetEngine()
+    public void ResetEngine()
     {
-        m_playerIdTurn = 1;
-        m_gameState = GameState.GAME_CONTINUE;
+        m_PlayerIdTurn = 1;
+        m_GameState = eGameState.GAME_CONTINUE;
     }
 
-    public void changePlayerTurn()
+    public void ChangeTurn()
     {
-        m_playerIdTurn = m_playerIdTurn == 1 ? 2 : 1;
+        m_PlayerIdTurn = m_PlayerIdTurn == 1 ? 2 : 1;
     }
 
-    public void evaluateGameState()
+    protected void EvaluateGameState()
     {
-        if(BoardUtils.checkLoss(m_gameBoard.getBoard(), m_gameMarks[m_playerIdTurn-1]))
+        if(BoardUtils.CheckLoss(m_GameBoard.BoardMatrix, r_GameMarks[m_PlayerIdTurn-1]))
         {
-            m_gameState = m_playerIdTurn == 1 ? GameState.GAME_PLAYER1_LOSS : GameState.GAME_PLAYER2_LOSS;
+            m_GameState = m_PlayerIdTurn == 1 ? eGameState.GAME_PLAYER1_LOSS : eGameState.GAME_PLAYER2_LOSS;
         }
-        else if(BoardUtils.isBoardFull(m_gameBoard.getBoard()))
+        else if(BoardUtils.IsBoardFull(m_GameBoard.BoardMatrix))
         {
-            m_gameState = GameState.GAME_TIE;
+            m_GameState = eGameState.GAME_TIE;
         }
     }
 }

@@ -1,79 +1,97 @@
 public class Board
 {
-    private string[,] matrix;
-    private int m_matrixSize;
-    public string[,] getBoard()
-    {
-        return matrix;
-    }
-    public int getBoardSize()
-    {
-        return m_matrixSize;
-    }
+    private string[,] m_BoardMatrix;
+    private int m_BoardSize;
+
     public Board(int size)
     {
-        m_matrixSize = size;
-        matrix = new string[size, size];
+        m_BoardSize = size;
+        m_BoardMatrix = new string[size, size];
         for (int row = 0; row < size; row++)
         {
-            for (int column = 0; column < size; column++)
+            for (int col = 0; col < size; col++)
             {
-                matrix[row, column] = "   ";
+                m_BoardMatrix[row, col] = "   ";
             }
         }
+
         refreshBoard();
     }
+
+    public string[,] BoardMatrix
+    {
+        get { return m_BoardMatrix; } 
+    }
+
+    public int Size
+    {
+        get { return m_BoardSize; }
+    }
+
     private void refreshBoard()
     {
         string seperatorLine = " ";
-        for (int i = 0; i <= (m_matrixSize * 4); i++)
+
+        for (int i = 0; i <= (m_BoardSize * 4); i++)
         {
             seperatorLine += "=";
         }
+
         Console.Write("  ");
-        for (int i = 0; i < m_matrixSize; i++)
+        for (int i = 0; i < m_BoardSize; i++)
         {
             Console.Write(i + 1 + "   ");
         }
+
         Console.WriteLine("");
-        for (int row = 0; row < m_matrixSize; row++)
+        for (int row = 0; row < m_BoardSize; row++)
         {
-            for (int column = 0; column < m_matrixSize; column++)
+            for (int column = 0; column < m_BoardSize; column++)
             {
                 if (column == 0)
-                    Console.Write(row + 1 + "|" + matrix[row, column]);
+                    Console.Write(row + 1 + "|" + m_BoardMatrix[row, column]);
                 else
                 {
-                    if (column == (m_matrixSize - 1))
-                        Console.WriteLine("|" + matrix[row, column] + "|");
+                    if (column == (m_BoardSize - 1))
+                    {
+                        Console.WriteLine("|" + m_BoardMatrix[row, column] + "|");
+                    }
                     else
-                        Console.Write("|" + matrix[row, column]);
+                    {
+                        Console.Write("|" + m_BoardMatrix[row, column]);
+                    }
                 }
             }
+
             Console.WriteLine(seperatorLine);
         }
     }
-    public void updateBoard(int row, int column, string value)
+
+    public void UpdateBoard(int row, int column, string value)
     {
-        matrix[row, column] = " " + value + " ";
+        m_BoardMatrix[row, column] = " " + value + " ";
         refreshBoard();
     }
-    public void resetBoard()
+
+    public void ResetBoard()
     {
-        for (int row = 0; row < m_matrixSize; row++)
+        for (int row = 0; row < m_BoardSize; row++)
         {
-            for (int column = 0; column < m_matrixSize; column++)
+            for (int column = 0; column < m_BoardSize; column++)
             {
-                matrix[row, column] = "   ";
+                m_BoardMatrix[row, column] = "   ";
             }
         }
+        
         refreshBoard();
     }
-    public bool isCellAvailable(int i_Row, int i_Col)
+
+    public bool IsCellAvailable(int i_Row, int i_Col)
     {
-        return string.IsNullOrWhiteSpace(matrix[i_Row, i_Col]);
+        return string.IsNullOrWhiteSpace(m_BoardMatrix[i_Row, i_Col]);
     }
-    public void displayScoreTable(int i_player1Score, int i_player2Score)
+
+    public void DisplayScoreTable(int i_player1Score, int i_player2Score)
     {
         Console.WriteLine("Score Table");
         Console.WriteLine("-----------------");
